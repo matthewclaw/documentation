@@ -87,14 +87,14 @@ Now we have to load the GitHub client.
 **Path —** `./hooks/github/index.js`
 
 ```js
-const GitHubAPI = require('@octokit/rest');
+const {Octokit} = require('@octokit/rest');
 
 module.exports = strapi => {
   return {
     async initialize() {
       const { token } = strapi.config.get('hook.settings.github');
 
-      strapi.services.github = new GitHubAPI({
+      strapi.services.github = new Octokit({
         userAgent: `${strapi.config.get('info.name')} v${strapi.config.get('info.version')}`,
         auth: `token ${token}`,
       });
